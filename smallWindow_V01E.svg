@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="297mm"
-   height="210mm"
-   viewBox="0 0 297 210"
+   width="277.10098mm"
+   height="170.8364mm"
+   viewBox="0 0 277.10098 170.8364"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="smallWindow_V01E.svg">
   <defs
      id="defs2" />
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.3130659"
-     inkscape:cx="569.17885"
-     inkscape:cy="392.10346"
+     inkscape:zoom="0.9284778"
+     inkscape:cx="449.03958"
+     inkscape:cy="423.43018"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -37,13 +37,17 @@
      inkscape:snap-center="true"
      inkscape:measure-start="62.7237,581.381"
      inkscape:measure-end="62.7237,202.823"
-     inkscape:window-width="1920"
-     inkscape:window-height="1121"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1">
+     inkscape:window-width="1600"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <sodipodi:guide
-       position="12.095239,103.74405"
+       position="0.05048592,85.418189"
        orientation="0,1"
        id="guide4522"
        inkscape:locked="false" />
@@ -64,52 +68,48 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-87)">
+     transform="translate(-12.044752,-107.83776)">
     <rect
        id="rect3713"
        width="277.00098"
        height="170.73639"
        x="12.094752"
        y="107.88776"
-       style="fill:none;stroke:#000000;stroke-width:0.26361009"
+       style="fill:none;stroke:#0000ff;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
        rx="9.0000315"
        ry="8.9338808" />
-    <ellipse
-       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+    <circle
+       style="fill:none;stroke:#ff0000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
        id="path3715"
        cx="16.595657"
        cy="142.45633"
-       rx="1.4866581"
-       ry="1.4866654" />
-    <ellipse
-       ry="1.4866654"
-       rx="1.4866581"
+       r="1.2" />
+    <circle
        cy="-244.05559"
        cx="16.595657"
        id="ellipse4543"
-       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ff0000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
        inkscape:transform-center-x="133.99958"
        inkscape:transform-center-y="50.799629"
-       transform="scale(1,-1)" />
-    <ellipse
-       transform="scale(-1)"
+       transform="scale(1,-1)"
+       r="1.2" />
+    <circle
+       transform="scale(-1,-1)"
        inkscape:transform-center-y="50.799629"
        inkscape:transform-center-x="-133.99958"
-       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ff0000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
        id="ellipse4545"
        cx="-284.59482"
        cy="-244.05559"
-       rx="1.4866581"
-       ry="1.4866654" />
-    <ellipse
-       ry="1.4866654"
-       rx="1.4866581"
+       r="1.2" />
+    <circle
        cy="142.45633"
        cx="-284.59482"
        id="ellipse4547"
-       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ff0000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none"
        inkscape:transform-center-x="-133.99958"
        inkscape:transform-center-y="-50.799629"
-       transform="scale(-1,1)" />
+       transform="scale(-1,1)"
+       r="1.2" />
   </g>
 </svg>
