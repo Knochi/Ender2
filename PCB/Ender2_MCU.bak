@@ -1,0 +1,465 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:TexasInstruments
+LIBS:Symbols
+LIBS:Ender2ReverseEng-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ATMEGA1284P-AU U?
+U 1 1 5AD606A8
+P 3175 3150
+F 0 "U?" H 2325 5030 50  0000 L BNN
+F 1 "ATMEGA1284P-AU" H 3575 1200 50  0000 L BNN
+F 2 "TQFP44" H 3175 3150 50  0001 C CIN
+F 3 "" H 3175 3150 50  0001 C CNN
+	1    3175 3150
+	1    0    0    -1  
+$EndComp
+Text HLabel 4750 4750 2    60   Output ~ 0
+Stepper_EN
+Wire Wire Line
+	4750 4750 4175 4750
+Text HLabel 4750 3750 2    60   Output ~ 0
+X_DIR
+Text HLabel 4750 4850 2    60   Output ~ 0
+X_STEP
+Wire Wire Line
+	4750 3750 4175 3750
+Wire Wire Line
+	4750 4850 4175 4850
+Text HLabel 4750 3950 2    60   Output ~ 0
+Y_DIR
+Wire Wire Line
+	4750 3950 4175 3950
+Text HLabel 4750 3850 2    60   Output ~ 0
+Y_STEP
+Wire Wire Line
+	4750 3850 4175 3850
+Text HLabel 4750 2550 2    60   Output ~ 0
+Z_DIR
+Text HLabel 4750 2650 2    60   Output ~ 0
+Z_STEP
+Wire Wire Line
+	4750 2550 4175 2550
+Wire Wire Line
+	4750 2650 4175 2650
+Text HLabel 4750 2350 2    60   Output ~ 0
+E_DIR
+Text HLabel 4750 2450 2    60   Output ~ 0
+E_STEP
+Wire Wire Line
+	4750 2350 4175 2350
+Wire Wire Line
+	4750 2450 4175 2450
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF09AA
+P 7950 3400
+F 0 "J?" H 7950 3550 50  0000 C CNN
+F 1 "OFF" V 8050 3400 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B02B-XH-A_1x02_P2.50mm_Horizontal" H 7950 3400 50  0001 C CNN
+F 3 "" H 7950 3400 50  0001 C CNN
+	1    7950 3400
+	1    0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF0A01
+P 7400 3500
+F 0 "J?" H 7400 3650 50  0000 C CNN
+F 1 "X_STOP" V 7500 3500 50  0000 C CNN
+F 2 "" H 7400 3500 50  0001 C CNN
+F 3 "" H 7400 3500 50  0001 C CNN
+	1    7400 3500
+	1    0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF0A30
+P 6750 3600
+F 0 "J?" H 6750 3750 50  0000 C CNN
+F 1 "Y-STOP" V 6850 3600 50  0000 C CNN
+F 2 "" H 6750 3600 50  0001 C CNN
+F 3 "" H 6750 3600 50  0001 C CNN
+	1    6750 3600
+	1    0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF0A5A
+P 6200 3700
+F 0 "J?" H 6200 3850 50  0000 C CNN
+F 1 "Z-STOP" V 6300 3700 50  0000 C CNN
+F 2 "" H 6200 3700 50  0001 C CNN
+F 3 "" H 6200 3700 50  0001 C CNN
+	1    6200 3700
+	1    0    0    1   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5ADF0BFB
+P 7650 3525
+F 0 "#PWR?" H 7650 3275 50  0001 C CNN
+F 1 "GND" H 7650 3375 50  0000 C CNN
+F 2 "" H 7650 3525 50  0001 C CNN
+F 3 "" H 7650 3525 50  0001 C CNN
+	1    7650 3525
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 3525 7650 3450
+Wire Wire Line
+	7650 3450 7750 3450
+Wire Wire Line
+	7750 3350 4175 3350
+Wire Wire Line
+	7200 3450 4175 3450
+$Comp
+L GND #PWR?
+U 1 1 5ADF0E0B
+P 7125 3600
+F 0 "#PWR?" H 7125 3350 50  0001 C CNN
+F 1 "GND" H 7125 3450 50  0000 C CNN
+F 2 "" H 7125 3600 50  0001 C CNN
+F 3 "" H 7125 3600 50  0001 C CNN
+	1    7125 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7200 3550 7125 3550
+Wire Wire Line
+	7125 3550 7125 3600
+$Comp
+L GND #PWR?
+U 1 1 5ADF0EDA
+P 6450 3700
+F 0 "#PWR?" H 6450 3450 50  0001 C CNN
+F 1 "GND" H 6450 3550 50  0000 C CNN
+F 2 "" H 6450 3700 50  0001 C CNN
+F 3 "" H 6450 3700 50  0001 C CNN
+	1    6450 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 3650 6450 3650
+Wire Wire Line
+	6450 3650 6450 3700
+Wire Wire Line
+	6550 3550 4175 3550
+Wire Wire Line
+	6000 3650 4175 3650
+$Comp
+L GND #PWR?
+U 1 1 5ADF1007
+P 5875 3825
+F 0 "#PWR?" H 5875 3575 50  0001 C CNN
+F 1 "GND" H 5875 3675 50  0000 C CNN
+F 2 "" H 5875 3825 50  0001 C CNN
+F 3 "" H 5875 3825 50  0001 C CNN
+	1    5875 3825
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 3750 5875 3750
+Wire Wire Line
+	5875 3750 5875 3825
+$Comp
+L CONN_02X05 J?
+U 1 1 5ADF108D
+P 8625 2400
+F 0 "J?" H 8625 2700 50  0000 C CNN
+F 1 "PANEL" H 8625 2100 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical" H 8625 1200 50  0001 C CNN
+F 3 "" H 8625 1200 50  0001 C CNN
+	1    8625 2400
+	1    0    0    -1  
+$EndComp
+Text GLabel 5025 3250 2    60   BiDi ~ 0
+PC0
+Wire Wire Line
+	5025 3250 4175 3250
+Text GLabel 1825 1450 0    60   Input ~ 0
+~RESET
+Wire Wire Line
+	1825 1450 2175 1450
+$Comp
+L CONN_02X03 J?
+U 1 1 5ADF1207
+P 8625 1650
+F 0 "J?" H 8625 1850 50  0000 C CNN
+F 1 "ISP" H 8625 1450 50  0000 C CNN
+F 2 "" H 8625 450 50  0001 C CNN
+F 3 "" H 8625 450 50  0001 C CNN
+	1    8625 1650
+	1    0    0    -1  
+$EndComp
+Text GLabel 8050 1750 0    60   Output ~ 0
+~RESET
+Text GLabel 9100 2300 2    60   Output ~ 0
+~RESET
+Wire Wire Line
+	8375 1750 8050 1750
+Wire Wire Line
+	8875 2300 9100 2300
+$Comp
+L +5V #PWR?
+U 1 1 5ADF1363
+P 9050 1400
+F 0 "#PWR?" H 9050 1250 50  0001 C CNN
+F 1 "+5V" H 9050 1540 50  0000 C CNN
+F 2 "" H 9050 1400 50  0001 C CNN
+F 3 "" H 9050 1400 50  0001 C CNN
+	1    9050 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 1400 9050 1550
+Wire Wire Line
+	9050 1550 8875 1550
+$Comp
+L +5V #PWR?
+U 1 1 5ADF1410
+P 9050 2075
+F 0 "#PWR?" H 9050 1925 50  0001 C CNN
+F 1 "+5V" H 9050 2215 50  0000 C CNN
+F 2 "" H 9050 2075 50  0001 C CNN
+F 3 "" H 9050 2075 50  0001 C CNN
+	1    9050 2075
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8875 2600 9050 2600
+Wire Wire Line
+	9050 2600 9050 2075
+$Comp
+L GND #PWR?
+U 1 1 5ADF1465
+P 8250 2775
+F 0 "#PWR?" H 8250 2525 50  0001 C CNN
+F 1 "GND" H 8250 2625 50  0000 C CNN
+F 2 "" H 8250 2775 50  0001 C CNN
+F 3 "" H 8250 2775 50  0001 C CNN
+	1    8250 2775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8250 2775 8250 2600
+Wire Wire Line
+	8250 2600 8375 2600
+Text GLabel 8050 1550 0    60   Output ~ 0
+MISO
+Wire Wire Line
+	8375 1550 8050 1550
+Text GLabel 4750 2950 2    60   Input ~ 0
+MISO
+Wire Wire Line
+	4750 2950 4175 2950
+Text GLabel 4500 2850 2    60   Output ~ 0
+MOSI
+Wire Wire Line
+	4500 2850 4175 2850
+Text GLabel 4500 3050 2    60   Output ~ 0
+SCK
+Wire Wire Line
+	4500 3050 4175 3050
+Text GLabel 7650 1650 0    60   Input ~ 0
+SCK
+Wire Wire Line
+	7650 1650 8375 1650
+$Comp
+L GND #PWR?
+U 1 1 5ADF173E
+P 9225 1800
+F 0 "#PWR?" H 9225 1550 50  0001 C CNN
+F 1 "GND" H 9225 1650 50  0000 C CNN
+F 2 "" H 9225 1800 50  0001 C CNN
+F 3 "" H 9225 1800 50  0001 C CNN
+	1    9225 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9225 1800 9225 1750
+Wire Wire Line
+	9225 1750 8875 1750
+Text GLabel 9250 1650 2    60   Input ~ 0
+MOSI
+Wire Wire Line
+	9250 1650 8875 1650
+Text GLabel 7650 2200 0    60   Input ~ 0
+SCK
+Wire Wire Line
+	7650 2200 8375 2200
+Text GLabel 9100 2500 2    60   Input ~ 0
+MOSI
+Wire Wire Line
+	9100 2500 8875 2500
+Text GLabel 9475 2400 2    60   BiDi ~ 0
+PA1
+Wire Wire Line
+	9475 2400 8875 2400
+Text GLabel 9475 2200 2    60   BiDi ~ 0
+PC0
+Wire Wire Line
+	9475 2200 8875 2200
+Text GLabel 7925 2300 0    60   BiDi ~ 0
+PD3
+Text GLabel 8200 2400 0    60   BiDi ~ 0
+PD2
+Text GLabel 7925 2500 0    60   BiDi ~ 0
+PA3
+Wire Wire Line
+	7925 2300 8375 2300
+Wire Wire Line
+	8200 2400 8375 2400
+Wire Wire Line
+	7925 2500 8375 2500
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF1F6A
+P 6525 2100
+F 0 "J?" H 6525 2250 50  0000 C CNN
+F 1 "B-MOT" V 6625 2100 50  0000 C CNN
+F 2 "" H 6525 2100 50  0001 C CNN
+F 3 "" H 6525 2100 50  0001 C CNN
+	1    6525 2100
+	1    0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF200A
+P 5975 2200
+F 0 "J?" H 5975 2350 50  0000 C CNN
+F 1 "E-TEMP" V 6075 2200 50  0000 C CNN
+F 2 "" H 5975 2200 50  0001 C CNN
+F 3 "" H 5975 2200 50  0001 C CNN
+	1    5975 2200
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5775 2150 4175 2150
+Wire Wire Line
+	6325 2050 4175 2050
+$Comp
+L GND #PWR?
+U 1 1 5ADF2124
+P 5675 2325
+F 0 "#PWR?" H 5675 2075 50  0001 C CNN
+F 1 "GND" H 5675 2175 50  0000 C CNN
+F 2 "" H 5675 2325 50  0001 C CNN
+F 3 "" H 5675 2325 50  0001 C CNN
+	1    5675 2325
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5ADF2153
+P 6250 2225
+F 0 "#PWR?" H 6250 1975 50  0001 C CNN
+F 1 "GND" H 6250 2075 50  0000 C CNN
+F 2 "" H 6250 2225 50  0001 C CNN
+F 3 "" H 6250 2225 50  0001 C CNN
+	1    6250 2225
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6325 2150 6250 2150
+Wire Wire Line
+	6250 2150 6250 2225
+Wire Wire Line
+	5775 2250 5675 2250
+Wire Wire Line
+	5675 2250 5675 2325
+$Comp
+L CONN_01X02 J?
+U 1 1 5ADF21F1
+P 6500 1700
+F 0 "J?" H 6500 1850 50  0000 C CNN
+F 1 "CHECK" V 6600 1700 50  0000 C CNN
+F 2 "" H 6500 1700 50  0001 C CNN
+F 3 "" H 6500 1700 50  0001 C CNN
+	1    6500 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5ADF2254
+P 6225 1825
+F 0 "#PWR?" H 6225 1575 50  0001 C CNN
+F 1 "GND" H 6225 1675 50  0000 C CNN
+F 2 "" H 6225 1825 50  0001 C CNN
+F 3 "" H 6225 1825 50  0001 C CNN
+	1    6225 1825
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6225 1825 6225 1750
+Wire Wire Line
+	6225 1750 6300 1750
+Wire Wire Line
+	4175 1650 6300 1650
+$Comp
+L GND #PWR?
+U 1 1 5ADF25E5
+P 2875 5400
+F 0 "#PWR?" H 2875 5150 50  0001 C CNN
+F 1 "GND" H 2875 5250 50  0000 C CNN
+F 2 "" H 2875 5400 50  0001 C CNN
+F 3 "" H 2875 5400 50  0001 C CNN
+	1    2875 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2875 5400 2875 5150
+Wire Wire Line
+	2975 5150 2975 5300
+Wire Wire Line
+	2875 5300 3175 5300
+Connection ~ 2875 5300
+Wire Wire Line
+	3075 5300 3075 5150
+Connection ~ 2975 5300
+Wire Wire Line
+	3175 5300 3175 5150
+Connection ~ 3075 5300
+$EndSCHEMATC
