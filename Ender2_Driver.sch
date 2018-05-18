@@ -1,0 +1,85 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:TexasInstruments
+LIBS:Symbols
+LIBS:Ender2ReverseEng-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 5
+Title "Creality Ender 2 reverse engineering schematic"
+Date "2018-04-24"
+Rev "0.1"
+Comp "Boneproductions.de"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L A4988 U3
+U 1 1 5ADEF61E
+P 2500 2275
+F 0 "U3" H 3025 1625 60  0000 C CNN
+F 1 "A4988" H 2500 2275 60  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-28-1EP_5x5mm_P0.5mm" H 3550 725 60  0001 C CNN
+F 3 "" H 2500 2275 60  0001 C CNN
+	1    2500 2275
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR15
+U 1 1 5ADF054A
+P 3725 1500
+F 0 "#PWR15" H 3725 1350 50  0001 C CNN
+F 1 "+12V" H 3725 1640 50  0000 C CNN
+F 2 "" H 3725 1500 50  0001 C CNN
+F 3 "" H 3725 1500 50  0001 C CNN
+	1    3725 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3725 1500 3725 1875
+Wire Wire Line
+	3725 1875 3300 1875
+Wire Wire Line
+	3300 1775 3725 1775
+Connection ~ 3725 1775
+Text HLabel 1025 2475 0    60   Input ~ 0
+X_DIR
+Text HLabel 1025 2075 0    60   Input ~ 0
+X_STEP
+Wire Wire Line
+	1025 2075 1750 2075
+Wire Wire Line
+	1750 2475 1025 2475
+$EndSCHEMATC
