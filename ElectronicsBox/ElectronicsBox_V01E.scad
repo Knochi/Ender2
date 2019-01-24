@@ -1,15 +1,24 @@
 use <raspberryPi.scad>
-use <rndRect.scad>
+//use <rndRect.scad>
 use <2020profile.scad>
+use <nema17.scad>
+
+
+/* -- [Axis] -- */
+xAxisPos=0;  
+
+/* [Hidden]   */
 
 fudge=0.1;
 
 //translate([40,30,0]) rotate([0,0,-90]) import("Pi_Zero_W.stl");
 $fn=50;
-*translate([0,0,4]) enderPCB(); 
-*translate([-80,0,4]) rotate([0,0,-90]) raspberryPi();
+translate([35-77,47-114.5,4]) enderPCB(); 
+translate([ 34.20, -64.27,4 ]) rotate([0,0,-90]) raspberryPi();
 translate([0,0,-8])enderBase();
+translate([180/2+10,0,50]) heatBed();
 
+%translate([40,-50,10]) cube([57,130,20],true);
 
 module box(){
   translate([0,0,-5]) cube([100,120,10],true);
@@ -20,14 +29,24 @@ module enderBase(){
   ovDpth=250;
   ovThick=8;
   crnRad=5;
-  yBeamLngth=100;
+  xBeamLngth=60;
   
   color("DarkSlateGray")
-   linear_extrude(8) import("Base_Plate.svg");
+   linear_extrude(8) import("Ender2BasePlate_px.svg");
+  color("dimGrey") translate([ovWdth/2-10,ovDpth/2,28]) rotate([90,0,0]) linear_extrude(ovDpth) profile2040(); //y-Axis
+  color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) linear_extrude(xBeamLngth) profile2020();
+  color("dimGrey") translate([-10,42,8]) rotate([0,0,90]) linear_extrude(300) profile2040(); //z-Axis
+}
 
-    
-    color("dimGrey") translate([ovWdth/2-10,ovDpth/2,18]) rotate([90,0,0]) linear_extrude(ovDpth) profile2020();
-    color("dimGrey") translate([ovWdth/2-20-yBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) linear_extrude(yBeamLngth) profile2020();
+module heatBed(){
+  ovWdth=165;
+  ovDpth=165;
+  thick=2;
+  crnRad=3;
+  
+  color("silver") hull()
+  for (i=[-1,1],j=[-1,1])
+    translate([i*(ovWdth/2-crnRad),j*(ovDpth/2-crnRad),0]) cylinder(r=crnRad,h=thick);
 }
 module enderPCB(){
   PCBwdth=76.4;
