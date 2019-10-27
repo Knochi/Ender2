@@ -76,8 +76,11 @@ module enderBase(){
   
   color("DarkSlateGray")
    translate([-424.5+80,197.3+42,0]) linear_extrude(8) import("Ender2BasePlate_px.svg");
+    
+  //y-Axis
   color("dimGrey") translate([ovWdth/2-10,ovDpth/2,28]) rotate([90,0,0]) 
-    linear_extrude(ovDpth) profile2040(); //y-Axis
+    linear_extrude(ovDpth) profile2040(); 
+  rotate(-90) import("/Ender3Parts/YMotorHolder.stl"); 
   color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) 
     linear_extrude(xBeamLngth) profile2020();
     // z-axis
