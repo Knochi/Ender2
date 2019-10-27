@@ -7,21 +7,64 @@ use <nema17.scad>
 /* -- [Axis] -- */
 xAxisPos=0;  
 
+/* [Dimensions] */
+motorHghts=[32,32,32,40]; //x,y,z,E
+
+/* -- [show] -- */
+showPCB=true;
+showRaspberry=true;
+showProfiles=true;
+showMotors=true;
+showHeadBed=true;
+showHousing=true;
+
+/* -- [Housing] -- */
+hsngDims=[380,350,480];
+hsngMatThck=6;
+showFront=false;
+showLeft=false;
+
+
+
 /* [Hidden]   */
 
 fudge=0.1;
-
-//translate([40,30,0]) rotate([0,0,-90]) import("Pi_Zero_W.stl");
 $fn=50;
-translate([35-77,47-114.5,4]) enderPCB(); 
-translate([ 34.20, -64.27,4 ]) rotate([0,0,-90]) raspberryPi();
+
+
+if (showPCB)
+    translate([35-77,47-114.5,4]) enderPCB(); 
+
+if (showRaspberry)
+    translate([ 34.20, -64.27,4 ]) rotate([0,0,-90]) raspberryPi();
+
 translate([0,0,-8])enderBase();
-translate([180/2+10,0,50]) heatBed();
+
+if (showHeadBed)
+    translate([180/2+10,0,50]) heatBed();
+if (showMotors){
+    //X-Motor
+    //Y-Motor
+    translate([70,140,21]) rotate([0,90,0]) Nema17(motorHghts.y);
+    //Z-Motor
+    translate([-10,21+52,motorHghts.z+1.6]) Nema17(motorHghts.z);
+    //Extruder-Motor
+    
+}
+
+if (showHousing)
+    translate([0,0,-hsngMatThck/2-20]) housing();
 
 %translate([40,-50,10]) cube([57,130,20],true);
 
 module box(){
   translate([0,0,-5]) cube([100,120,10],true);
+}
+
+
+module housing(){
+    //base
+    color("wheat") cube([hsngDims.x,hsngDims.y,hsngMatThck],true);
 }
 
 module enderBase(){
@@ -32,10 +75,15 @@ module enderBase(){
   xBeamLngth=60;
   
   color("DarkSlateGray")
-   linear_extrude(8) import("Ender2BasePlate_px.svg");
-  color("dimGrey") translate([ovWdth/2-10,ovDpth/2,28]) rotate([90,0,0]) linear_extrude(ovDpth) profile2040(); //y-Axis
-  color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) linear_extrude(xBeamLngth) profile2020();
-  color("dimGrey") translate([-10,42,8]) rotate([0,0,90]) linear_extrude(300) profile2040(); //z-Axis
+   translate([-424.5+80,197.3+42,0]) linear_extrude(8) import("Ender2BasePlate_px.svg");
+  color("dimGrey") translate([ovWdth/2-10,ovDpth/2,28]) rotate([90,0,0]) 
+    linear_extrude(ovDpth) profile2040(); //y-Axis
+  color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) 
+    linear_extrude(xBeamLngth) profile2020();
+    // z-axis
+  color("dimGrey") translate([-10,42,8]) rotate([0,0,90]) 
+    linear_extrude(300) profile2040(); 
+    
 }
 
 module heatBed(){
