@@ -37,6 +37,10 @@ wndwRad=9;
 enderOffset=[-55,0,7];
 sltDim=[200,6]; //length width
 sltOffset=[0,hsngDims.y/2-93,40]; //slot Offset relative to side center
+wndwOffset=-0.2; //offset for acrylic
+
+//magnet dimensions [dia:height]
+mgntDim=[6,3];
 
 /* [Hidden]   */
  bgWndwOffset=bgWndwDim.y/2+30; //30mm bottom
@@ -69,23 +73,28 @@ if (showHousing)
 if (showWindows)
   color("grey",0.3){
     //bottom left
+    //!projection() rotate([0,90,0])
     difference(){
       translate([-(hsngDims.x-3)/2,0,bgWndwOffset-hsngMatThck]) 
-        rotate([90,0,90]) window(size="big",brim=false,thick=3);
+        rotate([90,0,90]) window(size="big",brim=false,thick=3,offset=wndwOffset, holesDia=mgntDim.x);
       translate(sltOffset+[-(hsngDims.x-3)/2,0,hsngDims.z/2-hsngMatThck]) 
         rotate([0,90,0]) slot(thick=3+fudge); 
     }
+    //bottom right
     translate([(hsngDims.x-3)/2,0,bgWndwOffset-hsngMatThck]) 
-      rotate([90,0,90]) window(size="big",brim=false,thick=3);
+      rotate([90,0,90]) window(size="big",brim=false,thick=3,offset=wndwOffset);
     
+    //top left
+    //!projection() rotate([0,90,0])
     difference(){
       translate([-(hsngDims.x-3)/2,0,smWndwOffset-hsngMatThck]) 
-        rotate([90,0,90]) window(size="small",brim=false,thick=3);
+        rotate([90,0,90]) window(size="small",brim=false,thick=3,offset=wndwOffset, holesDia=2.2);
       translate(sltOffset+[-(hsngDims.x-3)/2,0,hsngDims.z/2-hsngMatThck]) 
         rotate([0,90,0]) slot(thick=3+fudge);
     }
+    //top right
     translate([(hsngDims.x-3)/2,0,smWndwOffset-hsngMatThck]) 
-      rotate([90,0,90]) window(size="small",brim=false,thick=3);
+      rotate([90,0,90]) window(size="small",brim=false,thick=3,offset=wndwOffset);
   }
   
 module box(){
@@ -123,8 +132,8 @@ module housing(){
         for (ix=[[bgWndwOffset-hsngDims.z/2,"big"],[smWndwOffset-hsngDims.z/2,"small"]]) 
           translate([ix.x,0,0]){
             rotate(90){
-              window(size=ix[1],brim=true,thick=hsngMatThck+fudge);
-              translate([0,0,(hsngMatThck-3)/2+fudge]) window(size=ix[1],thick=3+fudge);
+              window(size=ix[1],brim=true,thick=hsngMatThck+fudge,holesDia=0);
+              translate([0,0,(hsngMatThck-3)/2+fudge]) window(size=ix[1],thick=3+fudge,holesDia=0);
             }
           }
         if (slot)
@@ -195,15 +204,20 @@ module heatBed(){
     translate([i*(ovWdth/2-crnRad),j*(ovDpth/2-crnRad),0]) cylinder(r=crnRad,h=thick);
 }
 
-
-module window(size="small",brim=false, thick=3){
+*window();
+module window(size="small",brim=false, thick=3, holesDia=3, offset=0){
  
   wndwDim= (size=="small") ? smWndwDim : bgWndwDim;
+  holesDim= (size=="small") ? [268,99.2] : [268,170.6];
   wndwBrim= brim ? brimWdth : 0;
   
-  hull() for (ix=[-1,1],iy=[-1,1])
-    translate([ix*(wndwDim.x/2-wndwRad-wndwBrim),iy*(wndwDim.y/2-wndwRad-wndwBrim),0]) 
-      cylinder(r=wndwRad,h=thick,center=true);
+  difference(){
+    hull() for (ix=[-1,1],iy=[-1,1])
+      translate([ix*(wndwDim.x/2-wndwRad-wndwBrim),iy*(wndwDim.y/2-wndwRad-wndwBrim),0]) 
+        cylinder(r=wndwRad+offset,h=thick,center=true);
+    for (ix=[-1,1],iy=[-1,1])
+      translate([ix*holesDim.x/2,iy*holesDim.y/2,0]) cylinder(d=holesDia,h=thick+fudge,center=true);
+  }
 }
 
 //slot();
