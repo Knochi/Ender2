@@ -2,12 +2,33 @@ fudge=0.1;
 
 translate([40,30,0]) rotate([0,0,-90]) import("Pi_Zero_W.stl");
 $fn=50;
-enderPCB(); 
+
+
+translate([80,0,0]) rotate(180) enderPCB(); 
+SKRMiniE3(true);
+module SKRMiniE3(center=false){
+  //V1.2 - https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/
+  
+  PCBDims=[70.25,100,1.6]; //turned reference drawing by 90ccw
+  cntrOffset= (center) ? [-PCBDims.x/2,-PCBDims.y/2,0] : [0,0,0];
+  
+  mountHoleDia=3.5;
+  mountHolePos=[[2.54,20.4],[2.54,82.55],
+                 [38.2,2.54],[40.8,34.35],
+                 [PCBDims.x-2.54,PCBDims.y-mountHoleDia/2]]; //relative to bottom left corner
+  
+  color("darkSlateGrey") translate(cntrOffset) 
+    linear_extrude(PCBDims.z) difference(){
+      square([PCBDims.x,PCBDims.y]);
+      for (pos=mountHolePos) translate(pos) circle(d=mountHoleDia);
+    }
+}
 
 module enderPCB(){
   PCBwdth=76.4;
   PCBhght=100.7;
   PCBthck=1.5;
+
   translate([-PCBwdth/2,-PCBhght/2,0]){
     difference(){
       color("green") translate([0,0,-1.5]) cube([PCBwdth,PCBhght,PCBthck]);
