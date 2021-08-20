@@ -3,15 +3,30 @@ use <raspberryPi.scad>
 use <2020profile.scad>
 use <nema17.scad>
 use <enderPCB.scad>
+use <linearRails.scad>
+
+/*
+  Ender 2 Modifikation to min. 300x180 build size
+  Inspirations:
+    simple linear rail printer: https://www.cetus3d.com/
+    linear rail conversion for Ender3: https://www.blvprojects.com/blv-ender-3-pro
+*/
+
+/* TODO
+  - change Y-profile to 40x40 and adapt design of BLV
+  - evaluate Ball screw
+*/
 
 
-/* -- [Axis] -- */
-xAxisPos=0; //[0:150]
-yAxisPos=0; //[0:150]
-zAxisPos=0; //[0:200]
+/* -- [AxisPositionsPercentages] -- */
+xAxisPos=0; //[0:100]
+yAxisPos=50; //[0:100]
+zAxisPos=0; //[0:100]
 
 /* [Dimensions] */
 motorHghts=[32,32,32,40]; //x,y,z,E
+axisLngths=[150,350,200]; //absolute length > travel
+
 
 /* -- [show] -- */
 showPCB=true;
@@ -20,7 +35,7 @@ showProfiles=true;
 showMotors=true;
 showHeadBed=true;
 showHousing=true;
-showWindows=true;  
+showWindows=false;  
 showBase=true;
 showTop=true;
 showBack=true;
@@ -28,13 +43,14 @@ showLeft=true;
 showRight=true;
 
 /* -- [Housing] -- */
-hsngDims=[380,350,480];
+hsngDims=[380+150,350,480];
 hsngMatThck=12;
 bgWndwDim=[277,222,3];
 smWndwDim=[277,170.7,3];
 brimWdth=10;
 wndwRad=9;
-enderOffset=[-55,0,7];
+enderOffset=[0,70,7];
+enderRot=[0,0,-90];
 sltDim=[200,6]; //length width
 sltOffset=[0,hsngDims.y/2-93,40]; //slot Offset relative to side center
 wndwOffset=-0.2; //offset for acrylic
@@ -49,14 +65,14 @@ fudge=0.1;
 $fn=50;
 
 
-translate(enderOffset){
+translate(enderOffset) rotate(enderRot) {
   if (showPCB)
     translate([35-77,47-114.5,4+8]) enderPCB(); 
 
   if (showRaspberry)
     translate([ 34.20, -64.27,4+8]) rotate([0,0,-90]) raspberryPi();
 
-  ender2();
+ ender2();
  
   if (showMotors){
     //X-Motor
@@ -145,11 +161,13 @@ module housing(){
 
 module ender2(){
   ovWdth=180;
-  ovDpth=250;
+  ovDpth=400; //the length of the Y-Axis profile (orig: 250)
   ovThick=8;
   crnRad=5;
   xBeamLngth=60;
   
+  
+  yOffset=(ovDpth-250)/2; //offset by extruding the Y-Axis
   //Baseplate
   color("DarkSlateGray")
    translate([-424.5+80,197.3+42,0]) linear_extrude(8) import("Ender2BasePlate_px.svg");
@@ -157,7 +175,7 @@ module ender2(){
   //Z-Motor
   translate([-10,21+52,motorHghts.z+1.6+8]) Nema17(motorHghts.z);
   
-  //X-Axis wth. Extrude
+  //X-Axis wth. Extruder and imported parts
   translate([0,0,zAxisPos-55]){
     color("dimGrey") translate([-27,24.7-10,155.5+8]) rotate([0,90,0]) linear_extrude(230) profile2020();
     translate([90,72.66+55.5,0]) rotate([90,0,180]){
@@ -170,21 +188,30 @@ module ender2(){
     //X-Motor
     translate([-57,27.8-1.6,163.5]) rotate([90,0,0]) Nema17(motorHghts.x);
     //E-Motor
-    translate([18.5,87.8,204.5+1.6]) Nema17(motorHghts[3]);
+    translate([18.5,87.8,204.5+1.6]) Nema17(motorHghts[3]); //.E
   }    
-  //Y-Axis profile
-  color("dimGrey") translate([ovWdth/2-10,ovDpth/2,28]) rotate([90,0,0]) 
-    linear_extrude(ovDpth) profile2040(); 
+  //Y-Axis 
+  color("dimGrey") translate([ovWdth/2,ovDpth/2,28]) rotate([90,0,0])
+    linear_extrude(ovDpth) profile4040(); 
+  //linear Rail
+  translate([ovWdth/2+10,0,28+20]) rotate(90)  MGN12(length=axisLngths.y,pos=yAxisPos/100);
   
-  translate([1.37+70,120-236,15+10])
+  
+  //Motor Holder
+  translate([1.37+70,120-236+yOffset,15+10])
     rotate(-90) import("/Ender3Parts/YMotorHolder.stl"); 
-  color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-ovDpth/2+167,18]) rotate([90,0,90]) 
-    linear_extrude(xBeamLngth) profile2020();
-  translate([-33+69.8,293.5-125,-43+18]) rotate([90,0,180]) import("/Ender3Parts/YTensioner.stl");
   //Y-Motor
-  if (showMotors)  translate([70,153,39]) rotate([0,90,0]) Nema17(motorHghts.y);
+    if (showMotors)  translate([70,153+yOffset,39]) rotate([0,90,0]) Nema17(motorHghts.y);
+  //Y-Tensioner
+  translate([-33+69.8,293.5-125-yOffset,-43+18]) 
+    rotate([90,0,180]) import("/Ender3Parts/YTensioner.stl");
+  //X-Beam
+  color("dimGrey") translate([ovWdth/2-20-xBeamLngth,-250/2+167,18]) rotate([90,0,90]) 
+    linear_extrude(xBeamLngth) profile2020();
+  
+  //Bed
   if (showHeadBed)
-    translate([180/2+10,62.5-yAxisPos,50+8+9.5]) heatBed();
+    rotate(90) MGN12(length=axisLngths.y,pos=yAxisPos/100) rotate(-90) translate([180/2+10,0,50+8+9.5])  heatBed();
   echo(180-125);
   
   // z-axis
@@ -193,16 +220,50 @@ module ender2(){
     
 }
 
-module heatBed(){
-  ovWdth=165;
-  ovDpth=165;
-  thick=2;
+
+
+
+module bedCarriage(cutOuts=false){
+  matThick=3; //Thickness of sheet material
+
+  screwDist=[140,255]; //Ender 3: 235x235 --> 170, 195x315 --> 140x230
+  screwHole=4.2;
+  //yellow springs(20x8mm): http://s.click.aliexpress.com/e/YFNHPjE
+  if (cutOuts)
+    for (ix=[-1,1],iy=[-1,0,1])
+      translate([ix*screwDist.x/2,iy*screwDist.y/2,0]) cylinder(d=screwHole,h=20+5); 
+  else{
+    cube();
+  }
+}
+
+*difference(){
+  translate([0,0,22]) heatBed();
+  bedCarriage(true);
+}
+
+module heatBed(size=[195,315,2],brim=7.5){
+//original 165x165x2
+  heatPadSize=[100,150,1.5];
+  heatPadDist=40;
   crnRad=3;
-  
+  workArea=[size.x-brim*2,size.y-brim*2];
   color("silver") hull()
   for (i=[-1,1],j=[-1,1])
-    translate([i*(ovWdth/2-crnRad),j*(ovDpth/2-crnRad),0]) cylinder(r=crnRad,h=thick);
+    translate([i*(size.x/2-crnRad),j*(size.y/2-crnRad),0]) cylinder(r=crnRad,h=size.z);
+  color("aqua") translate([0,0,size.z]) cube([workArea.x,workArea.y,0.1],true);
+
+  for (iy=[-1,1])
+    color("darkOrange") translate([0,iy*(heatPadSize.x+heatPadDist)/2,-heatPadSize.z/2]) rotate(90) cube(heatPadSize,true);
+
+  /*heaterPads
+  50x100 https://www.banggood.com/15W-12V-DC-50+100mm-Flexible-Waterproof-Silicon-Heater-Pad-Wiht-Wire-For-3D-Printer-p-1280175.html
+  120x120 https://banggood.app.link/vzQzIdsIveb
+  300W 240V 10*15cm Silicone Heated Bed Heating Pad w/ Adhesive Backing for 3D Printer Hot Bed
+https://banggood.app.link/LwSPdTTJveb
+  */
 }
+
 
 *window();
 module window(size="small",brim=false, thick=3, holesDia=3, offset=0){
